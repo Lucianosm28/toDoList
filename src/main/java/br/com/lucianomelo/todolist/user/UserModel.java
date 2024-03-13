@@ -1,33 +1,13 @@
 package br.com.lucianomelo.todolist.user;
 
+import lombok.Data;
+
+@Data     //Automaticamente coloca os Getters e Setters
+          //@Getter se for querer apenas os Getters
+          //@Setter se for querer apenas os Setters
+
 public class UserModel {
     private String username;
     private String name;
     private String password;
-    
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    //Getters and Setters
 }
