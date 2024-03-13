@@ -3,6 +3,7 @@ package br.com.lucianomelo.todolist.user;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 
 
@@ -18,22 +19,13 @@ import org.springframework.web.bind.annotation.PostMapping;
  @RequestMapping("/users")
 public class UserController {
 
-    /**
-     * String (texto)
-     * Integer (int) números inteiros
-     * Double (double) Números 0.0000
-     * Float (float) Números 0.000
-     * char (A C )
-     * Date (data)
-     * void
-     */
+  @Autowired        //O Spring gerencia, instancia o IUsesRepository
+    private IUserRepository userRepository; //Aqui chama a interface criada
 
-     /*
-      * Body
-      */
     @PostMapping("/")
-    public void create(@RequestBody UserModel userModel) {
-        System.out.println(userModel.getUsername());
+    public UserModel create(@RequestBody UserModel userModel) {
+        var userCreated = this.userRepository.save(userModel);
+        return userCreated;    //retorna o usuário que foi criado
     }
     
 }
