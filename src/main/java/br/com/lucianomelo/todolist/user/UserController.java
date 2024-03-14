@@ -1,6 +1,9 @@
 package br.com.lucianomelo.todolist.user;
 
 import org.springframework.web.bind.annotation.RestController;
+
+import at.favre.lib.crypto.bcrypt.BCrypt;
+
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +35,12 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Usuário já existe");
         }
 
+
+        var passwordHashred= BCrypt.withDefaults()
+            .hashToString(12,userModel.getPassword().toCharArray()); //Bcrypt para criptografar a senha
+
+        userModel.setPassword(passwordHashred);
+            
         var userCreated = this.userRepository.save(userModel);
         return ResponseEntity.status(HttpStatus.CREATED).body(userCreated);    //retorna o usuário que foi criado
     }
