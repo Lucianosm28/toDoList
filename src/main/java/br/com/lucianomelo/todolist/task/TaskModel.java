@@ -43,4 +43,12 @@ public class TaskModel {
  @CreationTimestamp       //Quando a task foi criada no banco de dados
  private LocalDateTime createdAt;
 
+
+ public void setTitle(String title) throws Exception {
+    if (title.length()> 50) {
+        throw new Exception("O campo title deve ter no máximo 50 caracteres");
+    }
+    this.title = title;
+}
+
 }
