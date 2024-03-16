@@ -29,10 +29,10 @@ public class FilterTaskAuth extends OncePerRequestFilter {
             throws ServletException, IOException {
     
                 var servletPath = request.getServletPath();
-
-                if (servletPath.equals("/tasks/")) { //Se o servletPath "rota" for igual a tasks aí faz a operação abaixo
+                System.out.println("PATH"+ servletPath);
+                if (servletPath.startsWith("/tasks/")) { //Se o servletPath "rota" for igual a tasks aí faz a operação abaixo
         
-    //Pegar autenticação(usuário e senha)
+                    //Pegar autenticação(usuário e senha)
                 var authorization = request.getHeader("Authorization");
 
                 var authEncoded = authorization.substring("Basic".length()).trim(); //Vai tirar o "Basic" do print e remover o espaço em branco

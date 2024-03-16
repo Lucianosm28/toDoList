@@ -18,6 +18,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
 
 
 
@@ -50,14 +53,21 @@ public class TaskController {
         var task = this.taskRepository.save(taskModel);
         return ResponseEntity.status(HttpStatus.OK).body(task);
     }
-    @GetMapping("/")
     public String getMethodName(@RequestParam String param) {
         return new String();
     }
     
+    @GetMapping("/")
     public List<TaskModel> list (HttpServletRequest request) {
         var idUser = request.getAttribute("idUser");
         var tasks = this.taskRepository.findByIdUser((UUID) idUser);
         return tasks;
+    }
+
+    //http://localhost:8080/tasks/895122313-cahjgsask-8631234
+    @PutMapping("/{id}")
+    public TaskModel update(@RequestBody TaskModel taskModel, HttpServletRequest request, @PathVariable UUID id) {
+            taskModel.setId(id);
+            return this.taskRepository.save(taskModel);
     }
 }
