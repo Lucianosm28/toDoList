@@ -2,6 +2,7 @@ package br.com.lucianomelo.todolist.task;
 
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.lucianomelo.todolist.utils.Utils;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.var;
 
@@ -66,8 +67,12 @@ public class TaskController {
 
     //http://localhost:8080/tasks/895122313-cahjgsask-8631234
     @PutMapping("/{id}")
-    public TaskModel update(@RequestBody TaskModel taskModel, HttpServletRequest request, @PathVariable UUID id) {
-            taskModel.setId(id);
+    public TaskModel update(@RequestBody TaskModel taskModel, @PathVariable UUID id, HttpServletRequest request ) {
+           
+           var task = this.taskRepository.findById(id).orElse(null);
+
+            Utils.copyNonNullProperties(taskModel, task);
+
             return this.taskRepository.save(taskModel);
     }
 }
