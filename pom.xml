@@ -12,23 +12,17 @@
 	<artifactId>todolist</artifactId>
 	<version>1.0.0</version>
 	<name>todolist</name>
-	<description>Gerenciador de tarefas</description>
+	<description>Projeto de TODO LIST</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>
-	
 	<dependencies>
 
-    	<dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-devtools</artifactId>
-        <optional>true</optional>
-    	</dependency>
-	
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-actuator</artifactId>
-		</dependency>
+	  <dependency>
+	    <groupId>org.springframework.boot</groupId>
+	    <artifactId>spring-boot-devtools</artifactId>
+      <optional>true</optional>
+	  </dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -51,20 +45,19 @@
 			<artifactId>h2</artifactId>
 			<scope>runtime</scope>
 		</dependency>
-		
-		<dependency>
-			<groupId>at.favre.lib</groupId>
-			<artifactId>bcrypt</artifactId>
-			<version>0.10.2</version>
-		</dependency>
 
 		<dependency>
-		    <groupId>org.projectlombok</groupId>
+			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<version>1.18.30</version>
 			<scope>provided</scope>
 		</dependency>
 
+		<dependency>
+			<groupId>at.favre.lib</groupId>
+			<artifactId>bcrypt</artifactId>
+			<version>0.10.2</version>
+		</dependency>
 	</dependencies>
 
 	<build>
