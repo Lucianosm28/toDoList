@@ -1,11 +1,5 @@
 package br.com.lucianomelo.todolist.task;
 
-import org.springframework.web.bind.annotation.RestController;
-
-import br.com.lucianomelo.todolist.utils.Utils;
-import jakarta.servlet.http.HttpServletRequest;
-import lombok.var;
-
 import java.time.LocalDateTime;
 import java.util.UUID;
 import java.util.List;
@@ -15,13 +9,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
+import br.com.lucianomelo.todolist.utils.Utils;
+import jakarta.servlet.http.HttpServletRequest;
 
 
 
@@ -54,9 +51,7 @@ public class TaskController {
         var task = this.taskRepository.save(taskModel);
         return ResponseEntity.status(HttpStatus.OK).body(task);
     }
-    public String getMethodName(@RequestParam String param) {
-        return new String();
-    }
+    
     
     @GetMapping("/")
     public List<TaskModel> list (HttpServletRequest request) {
@@ -67,7 +62,7 @@ public class TaskController {
 
     //http://localhost:8080/tasks/895122313-cahjgsask-8631234
     @PutMapping("/{id}")
-    public ResponseEntity update(@RequestBody TaskModel taskModel, @PathVariable UUID id, HttpServletRequest request ) {
+    public ResponseEntity update(@RequestBody TaskModel taskModel, HttpServletRequest request, @PathVariable UUID id ) {
            
            var task = this.taskRepository.findById(id).orElse(null);
            

@@ -1,7 +1,6 @@
 package br.com.lucianomelo.todolist.filter;
 
 import java.io.IOException;
-import java.net.http.HttpRequest;
 import java.util.Base64;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +9,6 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
 import br.com.lucianomelo.todolist.user.IUserRepository;
-import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
@@ -29,9 +27,9 @@ public class FilterTaskAuth extends OncePerRequestFilter {
             throws ServletException, IOException {
     
                 var servletPath = request.getServletPath();
-                System.out.println("PATH"+ servletPath);
-                if (servletPath.startsWith("/tasks/")) { //Se o servletPath "rota" for igual a tasks aí faz a operação abaixo
-        
+
+                if (servletPath.startsWith("/tasks/")) { 
+                    
                     //Pegar autenticação(usuário e senha)
                 var authorization = request.getHeader("Authorization");
 
